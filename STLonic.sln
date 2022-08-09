@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32728.150
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "STLonic", "STLonic\STLonic.vcxproj", "{A629031B-3A96-4DA7-878A-CFEA706A97FE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Debug|x64.ActiveCfg = Debug|x64
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Debug|x64.Build.0 = Debug|x64
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Debug|x86.ActiveCfg = Debug|Win32
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Debug|x86.Build.0 = Debug|Win32
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Release|x64.ActiveCfg = Release|x64
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Release|x64.Build.0 = Release|x64
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Release|x86.ActiveCfg = Release|Win32
+		{A629031B-3A96-4DA7-878A-CFEA706A97FE}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4262D5CA-A272-4C8D-81E0-54C5960037CF}
+	EndGlobalSection
+EndGlobal
