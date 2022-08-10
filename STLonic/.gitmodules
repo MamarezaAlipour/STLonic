@@ -1,4 +1,4 @@
 
 [submodule "oneTBB"]
-	path = oneTBB
+	path = https://github.com/oneapi-src/oneTBB
 	url = https://github.com/oneapi-src/oneTBB
