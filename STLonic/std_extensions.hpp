@@ -1,6 +1,6 @@
 /*
-	Author: Thomas Kim
-	First Edit: July 15, 2021
+	Author: Parisa Khaleghi
+	First Edit: July 15, 2022
 */
 
 #ifndef _STLONIC_STD_EXTENSIONS_HPP
