@@ -1,0 +1,3 @@
+[submodule "STLonic/oneTBB"]
+	path = STLonic/oneTBB
+	url = https://github.com/oneapi-src/oneTBB
