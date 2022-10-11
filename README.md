@@ -52,7 +52,7 @@ C++ programming environment:
 <a id="example"></a>
 
 ## Simple examples
-Suppose you want to print a `std::tuple`. Assuming you are using the C++17 version, you must completely overload `operator<<` or use Fold expressions, which will take a lot of time in both cases.
+Suppose you want to print a `std::tuple`. Assuming you are using the C++17 version, you must completely overload `operator<<` or use Fold expressions, which will waste a lot of time in both cases.
 for example:
 ```cpp
 template<typename Type, unsigned N, unsigned Last>
@@ -97,7 +97,7 @@ void print(const std::tuple<T...>& _tup)
     print(_tup, std::make_index_sequence<sizeof...(T)>());
 }
 ```
-In both cases, you are faced with a bunch of very long and boring code that will only take your time.
+In both cases, you are faced with a bunch of very long and boring code that will only waste your time.
 
 ### What will this library help you?
 
