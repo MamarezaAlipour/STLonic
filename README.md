@@ -2,7 +2,6 @@
 In my opinion, the STL library at first glance tries to reduce the complexities of C style programming.
 
 ## Table of Contents
-<p><br></p>
 
 - [What is STLonic](#about)
 - [What is the goal](#target)
