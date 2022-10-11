@@ -1,5 +1,5 @@
 # STLonic - A Collection of STL Extension
-In my opinion, the STL library at first glance tries to reduce the complexities of C style programming.
+For more comfort, stability, endurance and less code!
 
 ## Table of Contents
 
