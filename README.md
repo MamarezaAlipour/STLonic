@@ -1,4 +1,4 @@
-# STLonic - A Collection of STL Extension
+# STLonic - A Collection of STL Extensions
 For more comfort, stability, endurance and less code!
 
 ## Table of Contents
