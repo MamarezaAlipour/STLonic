@@ -52,7 +52,7 @@ C++ programming environment:
 <a id="example"></a>
 
 ## Simple examples
-Suppose you want to print a std::tuple. Assuming you are using the C++17 version, you must completely overload `operator<<` or use Fold expressions, which will take a lot of time in both cases.
+Suppose you want to print a `std::tuple`. Assuming you are using the C++17 version, you must completely overload `operator<<` or use Fold expressions, which will take a lot of time in both cases.
 for example:
 ```cpp
 template<typename Type, unsigned N, unsigned Last>
