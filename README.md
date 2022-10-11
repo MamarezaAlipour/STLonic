@@ -8,6 +8,7 @@ For more comfort, stability, endurance and less code!
 - [Why STLonic](#why)
 - [Environment](#environment)
 - [Links](#links)
+- [Simple examples](#example)
 - [License](#license)
 - [Hotfix](#Hotfix)
 
@@ -48,9 +49,104 @@ C++ programming environment:
 - GNU GCC/G++ version ``8.0 or higher``
 - Clang++ version ``8.0 or higher``
 
+<a id="example"></a>
 
+## Simple examples
+Suppose you want to print a std::tuple. Assuming you are using the C++17 version, you must completely overload `operator<<` or use Fold expressions, which will take a lot of time in both cases.
+for example:
+```cpp
+template<typename Type, unsigned N, unsigned Last>
+struct tuple_printer {
+
+    static void print(std::ostream& out, const Type& value) {
+        out << std::get<N>(value) << ", ";
+        tuple_printer<Type, N + 1, Last>::print(out, value);
+    }
+};
+
+template<typename Type, unsigned N>
+struct tuple_printer<Type, N, N> {
+
+    static void print(std::ostream& out, const Type& value) {
+        out << std::get<N>(value);
+    }
+
+};
+
+template<typename...Types>
+std::ostream& operator<<(std::ostream& out, const std::tuple<Types...>& value) {
+    out << "(";
+    tuple_printer<std::tuple<Types...>, 0, sizeof...(Types) - 1>::print(out, value);
+    out << ")";
+    return out;
+}
+```
+or with Fold expressions:
+```cpp
+template<class TupType, size_t... I>
+void print(const TupType& _tup, std::index_sequence<I...>)
+{
+    std::cout << "(");
+    (..., (std::cout << (I == 0? "" : ", ") << std::get<I>(_tup)));
+    std::cout << ")\n";
+}
+
+template<class... T>
+void print(const std::tuple<T...>& _tup)
+{
+    print(_tup, std::make_index_sequence<sizeof...(T)>());
+}
+```
+In both cases, you are faced with a bunch of very long and boring code that will only take your time.
+
+### What will this library help you?
+
+There is no need to write any of the above code, there is no need to call a specific prototype or function.
+Just write your code (with any kind of parameter-list) and then print it without loops and without any extra work. Same for `std::array` and `std::vector`.
+
+The example above using the STLonic library:
+```cpp
+
+#include "std_extensions.hpp"
+
+int main() {
+	std::array<int, 5> m = {1, 2, 3, 4, 5};
+	std::vector<int> n = {1, 2, 3, 4, 5};
+	std::tuple<int, std::string, bool> foo {10, "Hello, world!", false};
+	std::cout << m << std::endl;
+	std::cout << n << std::endl;
+	std::cout << foo << std::endl;
+}
+```
+Just like that!
+
+You don't even need that much code to convert types (for example, to convert an array to a `std::tuple`):
+```cpp
+template<typename tuple_t>
+constexpr auto tuple_to_array(tuple_t&& tuple)
+{
+    constexpr auto get_array = [](auto&& ... x){ return std::array{std::forward<decltype(x)>(x) ... }; };
+    return std::apply(get_array, std::forward<tuple_t>(tuple));
+}
+```
+The code above is in the condition that you use C++17, if you use the C++11, the situation will be much more complicated.
+But in STLonic we have done all this for you in a much more precise way. Again, just write your own code and call only `tuple_to_array` or `array_to_tuple` (for the opposite condition):
+
+```cpp
+#include "std_extensions.hpp"
+#include "std_array_tuple_operations.hpp"
+
+int main() {
+	std::array<int, 5> m = {1, 2, 3, 4, 5};
+	std::tuple<double, double, double> tup(1.5, 2.5, 4.5);
+	auto arr = tuple_to_array(tup);
+	auto tupl = array_to_tuple(m);
+
+	std::cout << arr << std::endl;
+	std::cout << tupl << std::endl;
+}
+```
 <a id="links"></a>
-
 ## Links
 
 For more information about Developer:
