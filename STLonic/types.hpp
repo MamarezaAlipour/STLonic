@@ -1,5 +1,5 @@
 /*
-	Author: Parisa Khaleghi
+	Author: Geek pww
 	First Edit: June 12, 2022
 	Second Edit: July. 07, 2022
 	Third Edit: Aug. 09, 2022 - safe binary operation - sbo()

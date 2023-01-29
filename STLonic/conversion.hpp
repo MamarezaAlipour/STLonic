@@ -1,6 +1,6 @@
 /**
  * @file conversion.hpp
- * @author Parisa Khaleghi (Parikhaleghi.ir)
+ * @author Geek pww
  * @brief String conversions are implemented.
  * @version 0.1
  * @date 2022-07-13
