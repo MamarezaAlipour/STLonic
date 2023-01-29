@@ -7,7 +7,6 @@ For more comfort, stability, endurance and less code!
 - [What is the goal](#target)
 - [Why STLonic](#why)
 - [Environment](#environment)
-- [Links](#links)
 - [Simple examples](#example)
 - [License](#license)
 - [Hotfix](#Hotfix)
@@ -146,14 +145,6 @@ int main() {
 	std::cout << tupl << std::endl;
 }
 ```
-<a id="links"></a>
-## Links
-
-For more information about Developer:
-
-- Contact [Parisa Khaleghi in linkedin](https://www.linkedin.com/in/parisakhaleghi)
-- Access to articles [Official website](https://parikhaleghi.ir/)
-- Access to CppReference articles [Contributions of cpp reference](https://en.cppreference.com/mwiki/index.php?limit=50&tagfilter=&title=Special%3AContributions&contribs=user&target=Parisakhaleghi&namespace=&year=&month=-1)
 
 <a id="license"></a>
 
