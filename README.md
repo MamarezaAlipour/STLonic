@@ -220,7 +220,7 @@ cd build && ctest
 MIT License
 
 ## Author
-Geek pww
+Mamareza Alipour
 
 ---
 For detailed API documentation, see the inline documentation in each header file.
