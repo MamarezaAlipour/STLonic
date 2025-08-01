@@ -22,7 +22,7 @@
 
 #ifdef _MSVC_LANG
 #if _MSVC_LANG < 201703L
-#error This libary requires C++17 Standard (Visual Studio 2017).
+#error This library requires C++17 Standard (Visual Studio 2017).
 #endif
 #else
 
