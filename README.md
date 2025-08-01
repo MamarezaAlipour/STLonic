@@ -1,141 +1,226 @@
-# STLonic: Modern C++ STL Utilities Library
+# STLonic: Modern C++ STL Utilities and Type Systems Library
 
-STLonic is a modern, header-only C++ library providing a rich set of utilities and functional-style algorithms for containers, ranges, and strings. It is designed to extend the C++ Standard Library (STL) with expressive, Pythonic, and convenient operations, making everyday coding more productive and enjoyable.
+## Project Purpose and Motivation
 
-## Features
+STLonic is a comprehensive, modern C++17 header-only library that extends the Standard Template Library (STL) with powerful type utilities, functional programming constructs, and convenient container operations. It bridges the gap between low-level C++ features and high-level programming paradigms, offering a rich set of tools for:
 
-- **Header-only**: Just include what you need, no linking required.
-- **C++17 and later**: Leverages modern C++ features for safety and performance.
-- **Functional utilities**: Map, filter, enumerate, zip, chunk, flatten, group_by, and more.
-- **Container helpers**: Contains, contains_key, erase_if, unique, reverse, sliding_window, partition, etc.
-- **String utilities**: Join, conversion between UTF-8/UTF-16/Windows codepages.
-- **Range adaptors**: Pythonic range operations for any STL container.
-- **Tested with DocTest**: Ensures reliability and correctness.
+- Type-safe operations and transformations
+- Functional programming patterns
+- Container manipulation and algorithms
+- String and encoding utilities
+- Safe numeric operations
+- Advanced tuple and array operations
+
+STLonic makes C++ development more productive and safer while maintaining the performance characteristics of modern C++.
+
+## Core Features
+
+### 1. Type System and Safety
+- **Safe Operations**: Type-safe numeric operations with overflow detection
+- **Type Traits**: Advanced type traits and concepts for meta-programming
+- **Type Utilities**: 
+  - `type_container` for type list manipulation
+  - `is_one_of` type trait
+  - Common type deduction utilities
+  - Safe casting operations
+  - Sequence generation utilities
+
+### 2. Container Operations
+- **Functional Adaptors**:
+  - `map`: Transform container elements
+  - `filter`: Select elements by predicate
+  - `enumerate`: Python-like enumeration
+  - `zip`: Parallel iteration over containers
+  - `chunk`: Split containers into chunks
+  - `flatten`: Flatten nested containers
+  
+- **Container Utilities**:
+  - `contains`, `contains_key`
+  - `erase_if`
+  - `to_vector`, `to_set`, `to_unordered_set`, `to_map`
+  - `for_each`, `all_of`, `any_of`, `none_of`
+  - `sliding_window`, `partition`, `group_by`
+  - `take`, `drop`
+  - `unique`, `reverse`
+
+### 3. Array and Tuple Operations
+- **Array Operations**: 
+  - Safe array transformations
+  - Multi-dimensional array helpers
+  - Array-tuple conversions
+  
+- **Tuple Utilities**:
+  - Tuple manipulation functions
+  - Type-safe tuple operations
+  - Tuple concatenation
+
+### 4. String and Encoding
+- `join`: Concatenate strings with separator
+- Rich Unicode support:
+  - UTF-8/UTF-16/UTF-32 conversions
+  - Windows codepage support
+  - Locale utilities
+
+### 5. Numeric Safety
+- Safe binary operations (`sbo`)
+- Integral overflow detection
+- Division by zero protection
+- Type-safe numeric casting
+
+### 6. Meta-programming Utilities
+- Index sequence utilities
+- Compile-time type lists
+- Type transformations
+- SFINAE-friendly concepts
 
 ## Installation
 
-STLonic is header-only. Simply copy the `STLonic/` directory into your project and include the headers you need:
+STLonic is header-only. Simply copy the `STLonic/` directory into your project:
 
 ```cpp
-#include "STLonic/container_utils.hpp"
-#include "STLonic/range_adaptors.hpp"
-// ...and others as needed
+#include "STLonic/types.hpp"           // Core type utilities
+#include "STLonic/container_utils.hpp" // Container operations
+#include "STLonic/range_adaptors.hpp" // Functional adaptors
+// ...other headers as needed
 ```
 
-Requires a C++17 compatible compiler (e.g., GCC 8+, Clang 8+, MSVC 2017+).
+Requirements:
+- C++17 compatible compiler (GCC 8+, Clang 8+, MSVC 2017+)
+- Optional: DocTest for running tests
 
-## Library Overview
+## Detailed API Overview
 
-### 1. `container_utils.hpp`
+### Type System (`types.hpp`)
+```cpp
+// Type traits and concepts
+concept numerical_c;              // Check for numerical types
+concept vector_c;                // Check for vector types
+concept tuple_c;                 // Check for tuple types
+concept iterator_available_c;    // Check for iterator support
 
-- `contains`, `contains_key`: Check for existence in containers/maps.
-- `erase_if`: Remove elements by predicate.
-- `to_vector`, `to_set`, `to_unordered_set`, `to_map`, `to_unordered_map`: Convert between container types.
-- `for_each`, `all_of`, `any_of`, `none_of`: Functional algorithms.
-- `find_or`, `index_of`, `reverse`, `unique`, `min_element`, `max_element`.
-- `sliding_window`, `partition`, `group_by`, `take`, `drop`.
+// Safe operations
+template<long long DebugMode = 2, typename T = int>
+auto sbo(T&& value);            // Safe binary operation
 
-### 2. `range_adaptors.hpp`
+// Type containers and transformations
+template<typename... Types>
+struct type_container;           // Type list utility
 
-- `filter`: Select elements by predicate.
-- `map`: Transform elements by function.
+// Sequence utilities
+template<auto... Args>
+using create_sequence;           // Create index sequences
+```
 
-### 3. `find_index.hpp`
+### Container Utilities (`container_utils.hpp`)
+```cpp
+// Container operations
+template<typename Container, typename T>
+bool contains(const Container& c, const T& value);
 
-- `find_index`, `find_index_if`: Find index of value or by predicate.
-- `find_last_index`: Find last occurrence index.
+template<typename Container, typename Predicate>
+void erase_if(Container& c, Predicate pred);
 
-### 4. `zip_object.hpp`
+// Functional algorithms
+template<typename Container>
+auto reverse(const Container& c);
 
-- `zip`: Iterate over two containers in parallel, yielding pairs.
+template<typename Container>
+auto unique(const Container& c);
+```
 
-### 5. `repeat_cycle.hpp`
+### Range Adaptors (`range_adaptors.hpp`)
+```cpp
+// Functional transformations
+template<typename Iterable, typename Predicate>
+auto filter(const Iterable& iter, Predicate pred);
 
-- `repeat`: Create a vector with repeated values.
-- `cycle`: Repeat a container multiple times.
-
-### 6. `value_or.hpp`
-
-- `value_or`: Get value from optional or provide a default.
-
-### 7. `is_one_of.hpp`
-
-- `is_one_of`, `is_one_of_v`: Type trait to check if a type is among a list.
-
-### 8. `flatten.hpp`
-
-- `flatten`: Flatten a container of containers into a single vector.
-
-### 9. `chunk.hpp`
-
-- `chunk`: Split a container into chunks of given size.
-
-### 10. `enumerate.hpp`
-
-- `enumerate`: Iterate with index and value, like Python's `enumerate`.
-
-### 11. `string_utils.hpp`
-
-- `join`: Concatenate elements into a string with a separator.
-
-### 12. `pretty_print.hpp`
-
-- Overloads for pretty-printing containers (e.g., `std::map`).
-
-### 13. `conversion.hpp`
-
-- String encoding conversions: UTF-8, UTF-16, Windows codepage.
-- Locale utilities.
-
-### 14. `cartesian_product.hpp`
-
-- `cartesian_product`: Compute the Cartesian product of two containers.
+template<typename Iterable, typename Func>
+auto map(const Iterable& iter, Func f);
+```
 
 ## Usage Examples
 
+### Safe Numeric Operations
 ```cpp
-#include "STLonic/container_utils.hpp"
-#include <vector>
-#include <iostream>
+using namespace stlonic;
+auto result = sbo(42) + sbo(-7);  // Safe addition with overflow check
+```
 
-int main() {
-    std::vector<int> v = {1, 2, 3, 4, 5};
-    auto even = stlonic::filter(v, [](int x) { return x % 2 == 0; });
-    auto squares = stlonic::map(v, [](int x) { return x * x; });
-    for (auto [i, val] : stlonic::enumerate(v)) {
-        std::cout << i << ": " << val << std::endl;
-    }
+### Container Operations
+```cpp
+std::vector<int> v = {1, 2, 3, 4, 5};
+
+// Functional operations
+auto even = filter(v, [](int x) { return x % 2 == 0; });
+auto doubled = map(v, [](int x) { return x * 2; });
+
+// Container utilities
+auto chunks = chunk(v, 2);  // {{1,2}, {3,4}, {5}}
+auto flat = flatten(std::vector{{1,2}, {3,4}});  // {1,2,3,4}
+```
+
+### Type Utilities
+```cpp
+// Type traits
+static_assert(is_one_of_v<int, float, int, double>);
+
+// Type containers
+using types = type_container<int, float, double>;
+```
+
+### String Operations
+```cpp
+std::vector<std::string> words = {"Hello", "World"};
+auto joined = join(words, ", ");  // "Hello, World"
+
+// UTF conversions
+auto utf16 = conversion::utf8_to_utf16(utf8_string);
+```
+
+## Advanced Features
+
+### Tuple Operations
+```cpp
+// Tuple manipulation
+auto t1 = std::make_tuple(1, "hello");
+auto t2 = std::make_tuple(2.0, 'x');
+auto combined = tuple_append(t1, t2);
+```
+
+### Multi-dimensional Indexing
+```cpp
+// Row-column indexing
+using indices = create_row_column_value_t<3, 4>;  // 3x4 grid
+```
+
+### Safe Type Casting
+```cpp
+// Safe numeric casting
+auto opt_val = numeric_cast<int>(large_unsigned_value);
+if (opt_val) {
+    // Safe to use value
 }
 ```
 
 ## Testing
-
-STLonic uses [DocTest](https://github.com/onqtam/doctest) for unit testing. To run tests, build and execute the test binary:
-
-```sh
-# Example (adjust for your build system)
-cmake .
-make
-./test_stlonic
+STLonic uses DocTest for unit testing:
+```bash
+cmake -B build
+cmake --build build
+cd build && ctest
 ```
 
 ## Contributing
-
-Contributions, bug reports, and feature requests are welcome! Please:
-
-- Fork the repository
-- Create a feature branch
-- Add tests for new features
-- Open a pull request
+1. Fork the repository
+2. Create a feature branch
+3. Add tests for new features
+4. Submit a pull request
 
 ## License
-
-This project is licensed under the MIT License.
+MIT License
 
 ## Author
-
 Geek pww
 
 ---
-
-For more details, see the source code and inline documentation in each header.
+For detailed API documentation, see the inline documentation in each header file.

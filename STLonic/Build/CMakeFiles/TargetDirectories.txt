@@ -1,0 +1,3 @@
+C:/Users/P - K/source/repos/STLonic1/STLonic/Build/CMakeFiles/test_stlonic.dir
+C:/Users/P - K/source/repos/STLonic1/STLonic/Build/CMakeFiles/ALL_BUILD.dir
+C:/Users/P - K/source/repos/STLonic1/STLonic/Build/CMakeFiles/ZERO_CHECK.dir
