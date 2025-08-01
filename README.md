@@ -2,7 +2,7 @@
 
 ## Project Purpose and Motivation
 
-STLonic is a comprehensive, modern C++17 header-only library that extends the Standard Template Library (STL) with powerful type utilities, functional programming constructs, and convenient container operations. It bridges the gap between low-level C++ features and high-level programming paradigms, offering a rich set of tools for:
+STLonic is a comprehensive, modern C++20 header-only library that extends the Standard Template Library (STL) with powerful type utilities, functional programming constructs, and convenient container operations. It bridges the gap between low-level C++ features and high-level programming paradigms, offering a rich set of tools for:
 
 - Type-safe operations and transformations
 - Functional programming patterns
@@ -85,7 +85,7 @@ STLonic is header-only. Simply copy the `STLonic/` directory into your project:
 ```
 
 Requirements:
-- C++17 compatible compiler (GCC 8+, Clang 8+, MSVC 2017+)
+- C++20 compatible compiler (GCC 8+, Clang 8+, MSVC 2020+)
 - Optional: DocTest for running tests
 
 ## Detailed API Overview
